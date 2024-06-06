@@ -57,7 +57,7 @@ My home service stack running on a [Beelink EQ12](https://www.bee-link.com/eq12-
         --ipam-driver=host-local \
         --subnet=10.10.1.0/24 \
         --gateway=10.10.1.1 \
-        --ip-range=10.1.129-10.10.1.149 \
+        --ip-range=10.10.1.128-10.10.1.149 \
         containernet
     ```
 
@@ -90,7 +90,7 @@ My home service stack running on a [Beelink EQ12](https://www.bee-link.com/eq12-
     Name = containernet
     [Network]
     IPForward = yes
-    Address = 10.10.1.128/24'
+    Address = 10.10.1.120/24'
     ```
 
 4. Disable `networkmanager`, the enable and start `systemd-networkd`
@@ -154,7 +154,7 @@ sudo systemctl disable --now firewalld.service
 
 | Name | Subnet | DHCP range | ARP reserved |
 |------|--------|------------|--------------|
-| LAN | 192.168.1.0/24 | 150-254 | 120-149 |
+| LAN | 192.168.2.0/24 | 150-254 | 120-149 |
 | TRUSTED | 192.168.10.0/24 | 150-254 | - |
 | SERVERS | 192.168.42.0/24 | 150-254 | 120-149 |
 | GUESTS | 192.168.50.0/24 | 150-254 | - |
