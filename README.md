@@ -24,7 +24,7 @@ My home service stack running on a [Beelink EQ12](https://www.bee-link.com/eq12-
 2. Make a new [SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent), add it to GitHub and clone your repo
 
     ```sh
-    export GITHUB_USER="onedr0p"
+    export GITHUB_USER="dkw99"
     curl https://github.com/$GITHUB_USER.keys > ~/.ssh/authorized_keys
     sudo install -d -o $(logname) -g $(logname) -m 755 /var/opt/home-service
     git clone git@github.com:$GITHUB_USER/home-service.git /var/opt/home-service/.
@@ -55,9 +55,9 @@ My home service stack running on a [Beelink EQ12](https://www.bee-link.com/eq12-
     sudo podman network create \
         --driver=ipvlan \
         --ipam-driver=host-local \
-        --subnet=192.168.1.0/24 \
-        --gateway=192.168.1.1 \
-        --ip-range=192.168.1.121-192.168.1.149 \
+        --subnet=10.10.1.0/24 \
+        --gateway=10.10.1.1 \
+        --ip-range=10.1.129-10.10.1.149 \
         containernet
     ```
 
@@ -66,9 +66,9 @@ My home service stack running on a [Beelink EQ12](https://www.bee-link.com/eq12-
     📍 _Setting the DNS server to a container used on this system might make dragons appear 🐉._
 
     ```sh
-    sudo bash -c 'cat << EOF > /etc/systemd/network/enp1s0.network
+    sudo bash -c 'cat << EOF > /etc/systemd/network/enp6s18.network
     [Match]
-    Name = enp1s0
+    Name = enp6s18
     [Network]
     DHCP = yes
     DNS = 1.1.1.1
@@ -90,7 +90,7 @@ My home service stack running on a [Beelink EQ12](https://www.bee-link.com/eq12-
     Name = containernet
     [Network]
     IPForward = yes
-    Address = 192.168.1.120/24'
+    Address = 10.10.1.128/24'
     ```
 
 4. Disable `networkmanager`, the enable and start `systemd-networkd`
